@@ -111,7 +111,6 @@ public:
         fileText.setString("Loading: " + p.filename().string());
     }
 
-    // Disegno della barra (sarà usato nel main il giorno 3)
     void draw(sf::RenderWindow& window, sf::Vector2f pos) {
         background.setPosition(pos);
         bar.setPosition(pos);
