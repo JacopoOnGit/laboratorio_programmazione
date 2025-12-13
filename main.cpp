@@ -132,3 +132,45 @@ public:
     }
 };
 
+// ======================
+// MAIN
+// ======================
+
+int main() {
+    sf::RenderWindow window(
+        sf::VideoMode({800, 600}),
+        "File Loading Progress Bar",
+        sf::State::Windowed
+    );
+
+    ProgressBar bar(500, 30);
+    ResourceLoader loader;
+    loader.addObserver(&bar);
+
+    // File da caricare
+    std::vector<std::string> files = {
+        "/System/Library/Fonts/Supplemental/Arial.ttf",
+        "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+        "/Users/jacopocutrignelli/Downloads/CLion-2025.2.1-aarch64.dmg"
+    };
+
+    // Thread di caricamento (così la finestra resta reattiva)
+    std::thread loaderThread([&]() {
+        loader.loadFiles(files);
+    });
+
+    while (window.isOpen()) {
+        while (auto event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>())
+                window.close();
+        }
+
+        window.clear(sf::Color::Black);
+        bar.draw(window, {150.f, 280.f});
+        window.display();
+    }
+
+    loaderThread.join();
+    return 0;
+}
+
