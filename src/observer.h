@@ -1,6 +1,3 @@
-//
-// Created by Jacopo Cutrignelli on 15/12/25.
-//
 
 #ifndef LABORATORIO_PROGRAMMAZIONE_OBSERVER_H
 #define LABORATORIO_PROGRAMMAZIONE_OBSERVER_H

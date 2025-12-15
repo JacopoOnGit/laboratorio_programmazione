@@ -37,7 +37,6 @@ public:
         fileText.setFillColor(sf::Color(180, 180, 180));
     }
 
-    // Callback dell'observer: aggiorna barra e testi
     void onProgressUpdate(float value, const std::string& file) override {
         progress = value;
         currentFile = file;
@@ -93,7 +92,7 @@ int main() {
         "/Users/jacopocutrignelli/Downloads/CLion-2025.2.1-aarch64.dmg"
     };
 
-    // Thread di caricamento (così la finestra resta reattiva)
+
     std::thread loaderThread([&]() {
         loader.loadFiles(files);
     });
